@@ -1,19 +1,30 @@
 package com.demo.tododobackend.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Entity
 public class Task {
 
-    @JsonProperty("id")
-    private long id;
-    @JsonProperty("title")
+    @Id
+    @GeneratedValue
+    private Long id;
     private String title;
     @JsonProperty("isCompleted")
-    private boolean isCompleted;
+    private Boolean isCompleted;
 
 }
