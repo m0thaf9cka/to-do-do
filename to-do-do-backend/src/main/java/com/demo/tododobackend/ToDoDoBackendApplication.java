@@ -4,15 +4,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.demo.tododobackend.service.TaskService;
+import com.demo.tododobackend.service.TodoService;
 
 @SpringBootApplication
 public class ToDoDoBackendApplication implements CommandLineRunner {
 
-	private final TaskService taskService;
+	private final TodoService todoService;
 
-	public ToDoDoBackendApplication(TaskService taskService) {
-		this.taskService = taskService;
+	public ToDoDoBackendApplication(TodoService todoService) {
+		this.todoService = todoService;
 	}
 
 	public static void main(String[] args) {
@@ -21,11 +21,11 @@ public class ToDoDoBackendApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) {
-		taskService.create("Buy groceries", true);
-		taskService.create("Clean up the apartment", false);
-		taskService.create("Wash the dishes", false);
-		taskService.create("Do morning exercises", true);
-		taskService.create("Make a breakfast", false);
+		todoService.create("Buy groceries", true);
+		todoService.create("Clean up the apartment", false);
+		todoService.create("Wash the dishes", false);
+		todoService.create("Do morning exercises", true);
+		todoService.create("Make a breakfast", false);
 	}
 
 }

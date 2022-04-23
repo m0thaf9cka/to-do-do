@@ -1,25 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import TaskService from './api/TaskService';
+import TodoService from './api/TodoService';
+import TodoList from './components/TodoList';
 import {useFetch} from './hooks/useFetch';
 
 const App = () => {
-  const [taskList, setTaskList] = useState([]);
-  const [fetchTaskList, isTaskListLoading, taskListErrorMessage] = useFetch(async () => {
-    const response = await TaskService.getAll();
-    setTaskList(response.data);
+  const [todoList, setTodoList] = useState([]);
+  const [fetchTodoList, isTodoListLoading, todoListErrorMessage] = useFetch(async () => {
+    const response = await TodoService.getAll();
+    setTodoList(response.data);
   });
   useEffect(() => {
-    fetchTaskList().then();
+    fetchTodoList().then();
   }, []);
   return (
     <>
       <div>
-        {isTaskListLoading && <p>Loading...</p>}
-        {taskListErrorMessage && <p>{taskListErrorMessage}</p>}
+        {isTodoListLoading && <p>Loading...</p>}
+        {todoListErrorMessage && <p>{todoListErrorMessage}</p>}
       </div>
-      <div>
-        {taskList.map(task => <p>{task.title}</p>)}
-      </div>
+      <TodoList todoList={todoList}/>
     </>
   );
 }

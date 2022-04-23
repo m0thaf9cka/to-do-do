@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Task {
+public class Todo {
 
     @Id
     @GeneratedValue
