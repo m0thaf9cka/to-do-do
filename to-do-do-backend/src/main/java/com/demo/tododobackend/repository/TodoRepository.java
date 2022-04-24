@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.demo.tododobackend.model.Todo;
 
 @Repository
-public interface TodoRepository extends CrudRepository<Todo, Long> {
-
-}
+public interface TodoRepository extends CrudRepository<Todo, Long> {}

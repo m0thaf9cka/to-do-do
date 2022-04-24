@@ -15,15 +15,14 @@ import com.demo.tododobackend.service.TodoService;
 @RequestMapping("/api/todo")
 public class TodoController {
 
-    private final TodoService todoService;
+  private final TodoService todoService;
 
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
-    }
+  public TodoController(TodoService todoService) {
+    this.todoService = todoService;
+  }
 
-    @GetMapping("/all")
-    public List<Todo> getAll() {
-        return todoService.getAll();
-    }
-
+  @GetMapping("/all")
+  public List<Todo> getAll() {
+    return todoService.getAll();
+  }
 }
