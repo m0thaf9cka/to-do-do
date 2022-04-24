@@ -1,10 +1,12 @@
-import React from 'react';
+import React from "react";
 
-const TodoList = ({todoList}) => {
+const TodoList = ({ todoList }) => {
   return (
     <>
       <div>
-        {todoList.map(todo => <p>{todo.title}</p>)}
+        {todoList.map((todo) => (
+          <p>{todo.title}</p>
+        ))}
       </div>
     </>
   );
