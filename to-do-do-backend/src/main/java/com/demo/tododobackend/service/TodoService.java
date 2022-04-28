@@ -20,7 +20,7 @@ public class TodoService {
     return (List<Todo>) todoRepository.findAll();
   }
 
-  public void create(String title, Boolean isCompleted) {
-    todoRepository.save(Todo.builder().title(title).isCompleted(isCompleted).build());
+  public Todo create(Todo todo) {
+    return todoRepository.save(todo);
   }
 }

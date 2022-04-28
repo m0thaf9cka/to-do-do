@@ -21,6 +21,7 @@ import lombok.Setter;
 public class Todo {
 
   @Id @GeneratedValue private Long id;
+
   private String title;
 
   @JsonProperty("isCompleted")

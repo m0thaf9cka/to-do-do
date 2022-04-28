@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TodoService from "./api/TodoService";
+import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { useFetch } from "./hooks/useFetch";
 
@@ -11,6 +12,12 @@ const App = () => {
       setTodoList(response.data);
     }
   );
+  const saveTodo = async (todo) => {
+    const response = await TodoService.create(todo);
+    if (response.status === 200) {
+      setTodoList([...todoList, todo]);
+    }
+  };
   useEffect(() => {
     fetchTodoList().then();
   }, []);
@@ -20,6 +27,7 @@ const App = () => {
         {isTodoListLoading && <p>Loading...</p>}
         {todoListErrorMessage && <p>{todoListErrorMessage}</p>}
       </div>
+      <TodoForm saveTodo={saveTodo} />
       <TodoList todoList={todoList} />
     </>
   );
