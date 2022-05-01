@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { ImPlus } from "react-icons/im";
+import TodoInput from "../ui/TodoInput";
+import TodoButton from "../ui/TodoButton";
 
 const TodoForm = ({ saveTodo }) => {
   const [todoTitle, setTodoTitle] = useState("");
@@ -13,13 +16,16 @@ const TodoForm = ({ saveTodo }) => {
     saveTodo(todo);
   };
   return (
-    <form>
-      <input
-        placeholder={"New todo"}
+    <form className={"todoForm"}>
+      <TodoInput
+        className={"todoInput"}
+        placeholder={"New amazing todo..."}
         value={todoTitle}
         onChange={(e) => setTodoTitle(e.target.value)}
       />
-      <button onClick={createTodo}>Add</button>
+      <TodoButton className={"todoButton"} onClick={createTodo}>
+        <ImPlus />
+      </TodoButton>
     </form>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./App.css";
 import TodoService from "./api/TodoService";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -22,14 +23,14 @@ const App = () => {
     fetchTodoList().then();
   }, []);
   return (
-    <>
+    <div className={"app"}>
       <div>
         {isTodoListLoading && <p>Loading...</p>}
         {todoListErrorMessage && <p>{todoListErrorMessage}</p>}
       </div>
       <TodoForm saveTodo={saveTodo} />
       <TodoList todoList={todoList} />
-    </>
+    </div>
   );
 };
 
