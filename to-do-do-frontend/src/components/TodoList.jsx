@@ -1,14 +1,14 @@
 import React from "react";
+import TodoItem from "./TodoItem";
+import "../styles/components/TodoList.scss";
 
 const TodoList = ({ todoList }) => {
   return (
-    <>
-      <div>
-        {todoList.map((todo) => (
-          <p key={todo.id}>{todo.title}</p>
-        ))}
-      </div>
-    </>
+    <div className={"todoList"}>
+      {todoList.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} />
+      ))}
+    </div>
   );
 };
 

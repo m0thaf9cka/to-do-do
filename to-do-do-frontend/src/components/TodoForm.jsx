@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import { ImPlus } from "react-icons/im";
 import TodoButton from "./TodoButton";
 import TodoInput from "./TodoInput";
+import "../styles/components/TodoButton.scss";
 import "../styles/components/TodoForm.scss";
 
 const TodoForm = ({ saveTodo }) => {
   const [todoTitle, setTodoTitle] = useState("");
   const createTodo = (e) => {
     e.preventDefault();
-    const todo = {
-      id: Date.now(),
-      title: todoTitle,
-      isCompleted: false,
-    };
-    setTodoTitle("");
-    saveTodo(todo);
+    if (todoTitle) {
+      const todo = {
+        id: Date.now(),
+        title: todoTitle,
+        isCompleted: false,
+      };
+      setTodoTitle("");
+      saveTodo(todo);
+    }
   };
   return (
     <form className={"todoForm"}>
@@ -23,7 +26,7 @@ const TodoForm = ({ saveTodo }) => {
         value={todoTitle}
         onChange={(e) => setTodoTitle(e.target.value)}
       />
-      <TodoButton onClick={createTodo}>
+      <TodoButton className={"todoButton--large"} onClick={createTodo}>
         <ImPlus />
       </TodoButton>
     </form>
