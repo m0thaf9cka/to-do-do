@@ -1,0 +1,11 @@
+@import "../common/mixins";
+
+.todoInput {
+  display: flex;
+  flex-grow: 1;
+  width: 150px;
+  padding: 0 10px;
+  margin: 5px;
+  font-size: 18px;
+  @include todoBorder();
+}

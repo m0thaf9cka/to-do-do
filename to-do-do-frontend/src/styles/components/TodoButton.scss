@@ -1,0 +1,14 @@
+@import "../common/mixins";
+
+.todoButton {
+  display: flex;
+  padding: 5px;
+  margin: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  @include todoBorder();
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}

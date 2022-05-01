@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import TodoService from "./api/TodoService";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { useFetch } from "./hooks/useFetch";
+import "./styles/App.scss";
 
 const App = () => {
   const [todoList, setTodoList] = useState([]);
