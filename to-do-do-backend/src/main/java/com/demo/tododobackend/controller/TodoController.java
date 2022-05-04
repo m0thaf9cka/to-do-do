@@ -3,7 +3,9 @@ package com.demo.tododobackend.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,13 +25,18 @@ public class TodoController {
     this.todoService = todoService;
   }
 
-  @GetMapping("/all")
+  @GetMapping("/get/all")
   public List<Todo> getAll() {
     return todoService.getAll();
   }
 
-  @PostMapping("/")
-  public Todo create(@RequestBody Todo todo) {
-    return todoService.create(todo);
+  @PostMapping("/add")
+  public Todo add(@RequestBody Todo todo) {
+    return todoService.add(todo);
+  }
+
+  @DeleteMapping("/remove/{id}")
+  public void remove(@PathVariable Long id) {
+    todoService.removeById(id);
   }
 }

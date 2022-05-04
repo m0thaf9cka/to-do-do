@@ -13,10 +13,16 @@ const App = () => {
       setTodoList(response.data);
     }
   );
-  const saveTodo = async (todo) => {
-    const response = await TodoService.create(todo);
+  const addTodo = async (todo) => {
+    const response = await TodoService.add(todo);
     if (response.status === 200) {
-      setTodoList([...todoList, todo]);
+      setTodoList([...todoList, response.data]);
+    }
+  };
+  const removeTodoById = async (id) => {
+    const response = await TodoService.removeById(id);
+    if (response.status === 200) {
+      setTodoList(todoList.filter((todo) => todo.id !== id));
     }
   };
   useEffect(() => {
@@ -28,8 +34,8 @@ const App = () => {
         {isTodoListLoading && <p>Loading...</p>}
         {todoListErrorMessage && <p>{todoListErrorMessage}</p>}
       </div>
-      <TodoForm saveTodo={saveTodo} />
-      <TodoList todoList={todoList} />
+      <TodoForm addTodo={addTodo} />
+      <TodoList todoList={todoList} removeTodoById={removeTodoById} />
     </div>
   );
 };

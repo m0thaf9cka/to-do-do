@@ -5,18 +5,17 @@ import TodoInput from "./TodoInput";
 import "../styles/components/TodoButton.scss";
 import "../styles/components/TodoForm.scss";
 
-const TodoForm = ({ saveTodo }) => {
+const TodoForm = ({ addTodo }) => {
   const [todoTitle, setTodoTitle] = useState("");
   const createTodo = (e) => {
     e.preventDefault();
     if (todoTitle) {
       const todo = {
-        id: Date.now(),
         title: todoTitle,
         isCompleted: false,
       };
       setTodoTitle("");
-      saveTodo(todo);
+      addTodo(todo);
     }
   };
   return (

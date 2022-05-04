@@ -20,7 +20,11 @@ public class TodoService {
     return (List<Todo>) todoRepository.findAll();
   }
 
-  public Todo create(Todo todo) {
+  public Todo add(Todo todo) {
     return todoRepository.save(todo);
+  }
+
+  public void removeById(Long id) {
+    todoRepository.deleteById(id);
   }
 }
