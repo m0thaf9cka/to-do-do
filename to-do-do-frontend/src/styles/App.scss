@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: 300;
+  src: local('Oxygen'), url(../fonts/Oxygen-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: 400;
+  src: local('Oxygen'), url(../fonts/Oxygen-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: 700;
+  src: local('Oxygen'), url(../fonts/Oxygen-Bold.ttf) format('truetype');
+}
+
 * {
   margin: 0;
   padding: 0;
