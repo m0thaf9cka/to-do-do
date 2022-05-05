@@ -6,26 +6,28 @@ import "../styles/components/TodoButton.scss";
 import "../styles/components/TodoForm.scss";
 
 const TodoForm = ({ addTodo }) => {
-  const [todoTitle, setTodoTitle] = useState("");
+  const [todoItem, setTodoItem] = useState({
+    title: "",
+    isCompleted: false,
+  });
   const createTodo = (e) => {
     e.preventDefault();
-    if (todoTitle) {
-      const todo = {
-        title: todoTitle,
-        isCompleted: false,
-      };
-      setTodoTitle("");
-      addTodo(todo);
+    if (todoItem.title.trim()) {
+      setTodoItem({ ...todoItem, title: "" });
+      addTodo(todoItem);
     }
   };
   return (
     <form className={"todoForm"}>
       <TodoInput
         placeholder={"New amazing todo..."}
-        value={todoTitle}
-        onChange={(e) => setTodoTitle(e.target.value)}
+        value={todoItem.title}
+        onChange={(e) => setTodoItem({ ...todoItem, title: e.target.value })}
       />
-      <TodoButton className={"todoButton--large"} onClick={createTodo}>
+      <TodoButton
+        className={"todoButton--large"}
+        onClick={(e) => createTodo(e)}
+      >
         <ImPlus />
       </TodoButton>
     </form>

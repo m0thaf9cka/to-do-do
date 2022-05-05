@@ -22,10 +22,10 @@ public class ToDoDoBackendApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    todoService.add(Todo.builder().title("Buy groceries").isCompleted(true).build());
-    todoService.add(Todo.builder().title("Clean up the apartment").isCompleted(false).build());
-    todoService.add(Todo.builder().title("Wash the dishes").isCompleted(false).build());
-    todoService.add(Todo.builder().title("Do morning exercises").isCompleted(true).build());
-    todoService.add(Todo.builder().title("Make a breakfast").isCompleted(false).build());
+    todoService.save(Todo.builder().title("Buy groceries").isCompleted(true).build());
+    todoService.save(Todo.builder().title("Clean up the apartment").isCompleted(false).build());
+    todoService.save(Todo.builder().title("Wash the dishes").isCompleted(false).build());
+    todoService.save(Todo.builder().title("Do morning exercises").isCompleted(true).build());
+    todoService.save(Todo.builder().title("Make a breakfast").isCompleted(false).build());
   }
 }

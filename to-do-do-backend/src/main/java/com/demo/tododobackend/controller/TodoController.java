@@ -31,9 +31,9 @@ public class TodoController {
     return todoService.getAll();
   }
 
-  @PostMapping("/add")
-  public Todo add(@RequestBody Todo todo) {
-    return todoService.add(todo);
+  @PostMapping("/save")
+  public Todo save(@RequestBody Todo todo) {
+    return todoService.save(todo);
   }
 
   @PatchMapping("/toggle/{id}")

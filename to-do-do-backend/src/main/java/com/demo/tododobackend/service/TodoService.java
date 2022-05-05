@@ -20,7 +20,7 @@ public class TodoService {
     return (List<Todo>) todoRepository.findAll();
   }
 
-  public Todo add(Todo todo) {
+  public Todo save(Todo todo) {
     return todoRepository.save(todo);
   }
 
