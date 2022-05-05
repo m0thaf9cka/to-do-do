@@ -24,7 +24,14 @@ public class TodoService {
     return todoRepository.save(todo);
   }
 
-  public void removeById(Long id) {
+  public void toggle(Long id) {
+    todoRepository.findById(id).ifPresent(todo -> {
+      todo.setIsCompleted(!todo.getIsCompleted());
+      todoRepository.save(todo);
+    });
+  }
+
+  public void remove(Long id) {
     todoRepository.deleteById(id);
   }
 }

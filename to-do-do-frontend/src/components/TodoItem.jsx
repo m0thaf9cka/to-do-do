@@ -8,10 +8,13 @@ import {
 import TodoButton from "./TodoButton";
 import "../styles/components/TodoItem.scss";
 
-const TodoItem = ({ todo, removeTodoById }) => {
+const TodoItem = ({ todo, toggleTodo, removeTodo }) => {
   return (
     <div className={"todoItem" + (todo.isCompleted ? "--completed" : "")}>
-      <TodoButton className={"todoButton--small"}>
+      <TodoButton
+        className={"todoButton--small"}
+        onClick={() => toggleTodo(todo.id)}
+      >
         {todo.isCompleted ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}
       </TodoButton>
       <p>{todo.title}</p>
@@ -20,7 +23,7 @@ const TodoItem = ({ todo, removeTodoById }) => {
       </TodoButton>
       <TodoButton
         className={"todoButton--small"}
-        onClick={() => removeTodoById(todo.id)}
+        onClick={() => removeTodo(todo.id)}
       >
         <ImCross />
       </TodoButton>

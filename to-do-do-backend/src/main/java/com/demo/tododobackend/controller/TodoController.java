@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,8 +36,13 @@ public class TodoController {
     return todoService.add(todo);
   }
 
+  @PatchMapping("/toggle/{id}")
+  public void toggle(@PathVariable Long id) {
+    todoService.toggle(id);
+  }
+
   @DeleteMapping("/remove/{id}")
   public void remove(@PathVariable Long id) {
-    todoService.removeById(id);
+    todoService.remove(id);
   }
 }

@@ -19,8 +19,18 @@ const App = () => {
       setTodoList([...todoList, response.data]);
     }
   };
-  const removeTodoById = async (id) => {
-    const response = await TodoService.removeById(id);
+  const toggleTodo = async (id) => {
+    const response = await TodoService.toggle(id);
+    if (response.status === 200) {
+      setTodoList(
+        todoList.map((todo) =>
+          todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+        )
+      );
+    }
+  };
+  const removeTodo = async (id) => {
+    const response = await TodoService.remove(id);
     if (response.status === 200) {
       setTodoList(todoList.filter((todo) => todo.id !== id));
     }
@@ -35,7 +45,11 @@ const App = () => {
         {todoListErrorMessage && <p>{todoListErrorMessage}</p>}
       </div>
       <TodoForm addTodo={addTodo} />
-      <TodoList todoList={todoList} removeTodoById={removeTodoById} />
+      <TodoList
+        todoList={todoList}
+        toggleTodo={toggleTodo}
+        removeTodo={removeTodo}
+      />
     </div>
   );
 };
