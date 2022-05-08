@@ -1,7 +1,17 @@
 import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import TodoList from "./components/TodoList";
+import "./App.scss";
 
 const App = () => {
-  return <div>Hello World!</div>;
+  const queryClient = new QueryClient();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <div className={"appContainer"}>
+        <TodoList />
+      </div>
+    </QueryClientProvider>
+  );
 };
 
 export default App;
