@@ -1,11 +1,12 @@
-import React from "react";
-import { ListItem, ListItemText } from "@mui/material";
-import { TodoItemProps } from "../interfaces/Todo";
+import React from 'react';
+import { Checkbox, ListItem, ListItemText } from '@mui/material';
+import { TodoItemProps } from '../global/interfaces';
 
-const TodoItem = ({ todo }: TodoItemProps) => {
+const TodoItem = ({ item, toggle }: TodoItemProps) => {
   return (
     <ListItem>
-      <ListItemText primary={todo.title} />
+      <Checkbox checked={item.isCompleted} onChange={() => toggle(item.id)} />
+      <ListItemText primary={item.title} />
     </ListItem>
   );
 };

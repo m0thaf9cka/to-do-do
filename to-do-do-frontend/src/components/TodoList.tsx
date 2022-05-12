@@ -1,16 +1,14 @@
-import React from "react";
-import { useQuery } from "react-query";
-import { List } from "@mui/material";
-import TodoService from "../api/TodoService";
-import TodoItem from "./TodoItem";
-import { Todo } from "../interfaces/Todo";
+import React from 'react';
+import { List } from '@mui/material';
+import TodoItem from './TodoItem';
+import { Todo, TodoListProps } from '../global/interfaces';
 
-const TodoList = () => {
-  const { data, isSuccess } = useQuery("todoList", () => TodoService.getAll());
+const TodoList = ({ list, toggle }: TodoListProps) => {
   return (
     <List>
-      {isSuccess &&
-        data?.map((item: Todo) => <TodoItem key={item.id} todo={item} />)}
+      {list.map((item: Todo) => (
+        <TodoItem key={item.id} item={item} toggle={toggle} />
+      ))}
     </List>
   );
 };
