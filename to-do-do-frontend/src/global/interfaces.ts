@@ -7,9 +7,11 @@ export interface Todo {
 export interface TodoItemProps {
   item: Todo;
   toggle: (id: number) => void;
+  remove: (id: number) => void;
 }
 
 export interface TodoListProps {
   list: Todo[];
   toggle: (id: number) => void;
+  remove: (id: number) => void;
 }
