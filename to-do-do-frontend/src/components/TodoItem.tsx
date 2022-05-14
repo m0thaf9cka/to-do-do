@@ -5,10 +5,14 @@ import { TodoItemProps } from '../global/interfaces';
 
 const TodoItem = ({ item, toggle, remove }: TodoItemProps) => {
   return (
-    <ListItem>
-      <Checkbox checked={item.isCompleted} onChange={() => toggle(item.id)} />
+    <ListItem disableGutters disablePadding>
+      <Checkbox
+        edge={'start'}
+        checked={item.isCompleted}
+        onChange={() => toggle(item.id)}
+      />
       <ListItemText primary={item.title} />
-      <IconButton onClick={() => remove(item.id)}>
+      <IconButton edge={'end'} onClick={() => remove(item.id)}>
         <ClearIcon />
       </IconButton>
     </ListItem>
