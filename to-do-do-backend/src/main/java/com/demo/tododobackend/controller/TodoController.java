@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.tododobackend.model.Todo;
@@ -26,9 +27,9 @@ public class TodoController {
     this.todoService = todoService;
   }
 
-  @GetMapping("/get/all")
-  public List<Todo> getAll() {
-    return todoService.getAll();
+  @GetMapping("/list")
+  public List<Todo> getList(@RequestParam(required = false) String query) {
+    return todoService.getList(query);
   }
 
   @PostMapping("/save")

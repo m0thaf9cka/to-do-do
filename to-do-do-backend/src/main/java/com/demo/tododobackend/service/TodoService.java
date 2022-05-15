@@ -16,8 +16,11 @@ public class TodoService {
     this.todoRepository = todoRepository;
   }
 
-  public List<Todo> getAll() {
-    return (List<Todo>) todoRepository.findAll();
+  public List<Todo> getList(String query) {
+    if (query != null) {
+      return todoRepository.findAllByTitleIgnoreCaseContains(query);
+    }
+    return todoRepository.findAll();
   }
 
   public Todo save(Todo todo) {
@@ -25,10 +28,13 @@ public class TodoService {
   }
 
   public void toggle(Long id) {
-    todoRepository.findById(id).ifPresent(todo -> {
-      todo.setIsCompleted(!todo.getIsCompleted());
-      todoRepository.save(todo);
-    });
+    todoRepository
+        .findById(id)
+        .ifPresent(
+            todo -> {
+              todo.setIsCompleted(!todo.getIsCompleted());
+              todoRepository.save(todo);
+            });
   }
 
   public void remove(Long id) {
