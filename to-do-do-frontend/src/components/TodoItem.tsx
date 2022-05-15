@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import ClearIcon from '@mui/icons-material/Clear';
-import EditIcon from '@mui/icons-material/Edit';
 import { Checkbox, IconButton, ListItem, ListItemText } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import ClearIcon from '@mui/icons-material/Clear';
 import TodoModal from './TodoModal';
-import { TodoItemProps } from '../global/interfaces';
+import { Todo } from '../global/interfaces';
+
+interface TodoItemProps {
+  item: Todo;
+  save: (todo: Todo) => void;
+  toggle: (id: number) => void;
+  remove: (id: number) => void;
+}
 
 const TodoItem = ({ item, save, toggle, remove }: TodoItemProps) => {
   const [isModal, setIsModal] = useState(false);

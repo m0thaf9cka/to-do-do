@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
-import { TodoModalProps } from '../global/interfaces';
+import { Todo } from '../global/interfaces';
+
+interface TodoModalProps {
+  isOpen: boolean;
+  close: () => void;
+  item?: Todo;
+  saveItem: (todo: Todo) => void;
+}
 
 const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
   const emptyTodo = { id: 0, title: '', isCompleted: false };

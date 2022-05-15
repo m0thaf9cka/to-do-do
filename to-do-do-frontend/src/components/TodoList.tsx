@@ -1,7 +1,14 @@
 import React from 'react';
 import { List } from '@mui/material';
 import TodoItem from './TodoItem';
-import { Todo, TodoListProps } from '../global/interfaces';
+import { Todo } from '../global/interfaces';
+
+interface TodoListProps {
+  list: Todo[];
+  saveItem: (todo: Todo) => void;
+  toggleItem: (id: number) => void;
+  removeItem: (id: number) => void;
+}
 
 const TodoList = ({
   list,
