@@ -1,24 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
+import { TodoModalProps } from '../global/interfaces';
 
-const TodoModal = ({ isOpen, setIsOpen }: any) => {
+const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
+  const emptyTodo = { id: 0, title: '', isCompleted: false };
+  const [todo, setTodo] = useState(item || emptyTodo);
+  const submit = () => {
+    if (todo.title.trim()) {
+      close();
+      saveItem({ ...todo, title: todo.title.trim() });
+      setTodo(item ? todo : emptyTodo);
+    }
+  };
+  const cancel = () => {
+    close();
+    setTodo(item || emptyTodo);
+  };
   return (
-    <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+    <Modal open={isOpen} onClose={() => cancel()}>
       <Box className={'modalBox'}>
         <Stack spacing={2}>
           <TextField
             fullWidth
-            label={'New amazing todo'}
+            label={item ? 'Edit todo' : 'Add todo'}
             variant={'standard'}
+            value={todo.title}
+            onChange={(e) => setTodo({ ...todo, title: e.target.value })}
           />
           <Stack
             direction={'row'}
             spacing={1}
             style={{ justifyContent: 'end' }}>
-            <Button variant={'outlined'} onClick={() => setIsOpen(false)}>
+            <Button variant={'outlined'} onClick={() => cancel()}>
               Cancel
             </Button>
-            <Button variant={'contained'} onClick={() => setIsOpen(false)}>
+            <Button
+              variant={'contained'}
+              onClick={() => submit()}
+              disabled={!todo.title.trim()}>
               Save
             </Button>
           </Stack>
