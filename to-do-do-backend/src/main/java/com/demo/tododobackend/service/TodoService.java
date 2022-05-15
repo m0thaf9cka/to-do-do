@@ -1,7 +1,7 @@
 package com.demo.tododobackend.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.demo.tododobackend.model.Todo;
@@ -10,17 +10,19 @@ import com.demo.tododobackend.repository.TodoRepository;
 @Service
 public class TodoService {
 
+  private static final Integer TODOS_PER_PAGE = 5;
   private final TodoRepository todoRepository;
 
   public TodoService(TodoRepository todoRepository) {
     this.todoRepository = todoRepository;
   }
 
-  public List<Todo> getList(String query) {
+  public Page<Todo> getList(String query, Integer page) {
     if (query != null) {
-      return todoRepository.findAllByTitleIgnoreCaseContains(query);
+      return todoRepository.findAllByTitleIgnoreCaseContains(
+          query, PageRequest.of(page - 1, TODOS_PER_PAGE));
     }
-    return todoRepository.findAll();
+    return todoRepository.findAll(PageRequest.of(page - 1, TODOS_PER_PAGE));
   }
 
   public Todo save(Todo todo) {

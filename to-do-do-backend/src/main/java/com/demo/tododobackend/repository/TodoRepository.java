@@ -1,16 +1,16 @@
 package com.demo.tododobackend.repository;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import com.demo.tododobackend.model.Todo;
 
 @Repository
-public interface TodoRepository extends CrudRepository<Todo, Long> {
+public interface TodoRepository extends PagingAndSortingRepository<Todo, Long> {
 
-  List<Todo> findAll();
+  Page<Todo> findAll(Pageable pageable);
 
-  List<Todo> findAllByTitleIgnoreCaseContains(String title);
+  Page<Todo> findAllByTitleIgnoreCaseContains(String title, Pageable pageable);
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Stack, Pagination } from '@mui/material';
 import TodoHeader from './TodoHeader';
 import TodoList from './TodoList';
 import { useTodoList } from '../hooks/useTodoList';
@@ -9,22 +9,33 @@ import { useRemoveTodo } from '../hooks/useRemoveTodo';
 
 const TodoApp = () => {
   const [query, setQuery] = useState('');
-  const { data, isSuccess, refetch } = useTodoList(query);
+  const [page, setPage] = useState(1);
+  const { data: list, isSuccess, refetch } = useTodoList(query, page);
   const { mutate: saveTodo } = useSaveTodo();
   const { mutate: toggleTodo } = useToggleTodo();
   const { mutate: removeTodo } = useRemoveTodo();
-  useEffect(() => void refetch(), [query]);
+  useEffect(() => void refetch(), [query, page]);
   return (
     <Box className={'appContainer'}>
       <TodoHeader query={query} setQuery={setQuery} saveTodo={saveTodo} />
       {isSuccess && (
         <TodoList
-          list={data}
+          list={list?.content}
           saveItem={saveTodo}
           toggleItem={toggleTodo}
           removeItem={removeTodo}
         />
       )}
+      <Stack style={{ alignItems: 'center' }}>
+        <Pagination
+          page={page}
+          onChange={(event: React.ChangeEvent<unknown>, page: number) =>
+            setPage(page)
+          }
+          count={list?.totalPages}
+          color={'primary'}
+        />
+      </Stack>
     </Box>
   );
 };

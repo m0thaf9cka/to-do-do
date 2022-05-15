@@ -1,7 +1,6 @@
 package com.demo.tododobackend.controller;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +27,9 @@ public class TodoController {
   }
 
   @GetMapping("/list")
-  public List<Todo> getList(@RequestParam(required = false) String query) {
-    return todoService.getList(query);
+  public Page<Todo> getList(
+      @RequestParam(required = false) String query, @RequestParam Integer page) {
+    return todoService.getList(query, page);
   }
 
   @PostMapping("/save")
