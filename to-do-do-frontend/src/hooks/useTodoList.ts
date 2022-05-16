@@ -8,7 +8,7 @@ export const useTodoList = (
 ) => {
   return useQuery('todoList', () => TodoService.getList(query, page), {
     onSuccess: (response) => {
-      if (response?.data?.content?.length === 0 && page > 1) {
+      if (response?.data?.empty && page > 1) {
         setPage(page - 1);
       }
     }
