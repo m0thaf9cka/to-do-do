@@ -19,7 +19,7 @@ const TodoApp = () => {
   } = useTodoList(query, page, setPage);
   const todoList = response?.data;
   const { mutate: saveTodo, isLoading: isSaving } = useSaveTodo();
-  const { mutate: toggleTodo, isLoading: isToggling } = useToggleTodo();
+  const { mutate: toggleTodo } = useToggleTodo();
   const { mutate: removeTodo, isLoading: isRemoving } = useRemoveTodo();
   useEffect(() => void refetch(), [query, page]);
   return (
@@ -27,7 +27,7 @@ const TodoApp = () => {
       <TodoHeader query={query} setQuery={setQuery} saveTodo={saveTodo} />
       <TodoList
         list={todoList?.content}
-        isLoading={isFetching || isSaving || isToggling || isRemoving}
+        isLoading={isFetching || isSaving || isRemoving}
         isSuccess={isSuccess}
         isEmpty={todoList?.totalElements === 0}
         saveItem={saveTodo}

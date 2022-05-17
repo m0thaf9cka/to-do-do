@@ -1,11 +1,5 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { TodoService } from '../api/Todo.service';
 
-export const useToggleTodo = () => {
-  const client = useQueryClient();
-  return useMutation((id: number) => TodoService.toggle(id), {
-    onSuccess: () => {
-      void client.invalidateQueries('todoList');
-    }
-  });
-};
+export const useToggleTodo = () =>
+  useMutation((id: number) => TodoService.toggle(id));

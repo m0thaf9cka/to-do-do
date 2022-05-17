@@ -23,7 +23,7 @@ const TodoList = ({
   removeItem
 }: TodoListProps) => {
   return (
-    <Box style={{ minHeight: '226px' }}>
+    <Box className={'todoListContainer'}>
       {isSuccess && !isEmpty && !isLoading && (
         <List>
           {list.map((item: Todo) => (
@@ -38,16 +38,20 @@ const TodoList = ({
         </List>
       )}
       {isEmpty && !isLoading && (
-        <Stack style={{ justifyContent: 'center', minHeight: '226px' }}>
+        <Stack
+          className={'todoListContainer'}
+          style={{ justifyContent: 'center' }}>
           <Stack style={{ alignItems: 'center' }}>
             <Typography variant={'h6'}>No items found</Typography>
           </Stack>
         </Stack>
       )}
       {isLoading && (
-        <Stack style={{ justifyContent: 'center', minHeight: '226px' }}>
+        <Stack
+          className={'todoListContainer'}
+          style={{ justifyContent: 'center' }}>
           <Stack style={{ alignItems: 'center' }}>
-            <Box sx={{ display: 'flex' }}>
+            <Box style={{ display: 'flex' }}>
               <CircularProgress />
             </Box>
           </Stack>
