@@ -17,23 +17,19 @@ const TodoApp = () => {
     isSuccess,
     refetch
   } = useTodoList(query, page, setPage);
-  const isEmpty = response?.data?.empty;
-  const { mutate: saveTodo } = useSaveTodo();
-  const { mutate: toggleTodo } = useToggleTodo();
-  const { mutate: removeTodo } = useRemoveTodo();
-  useEffect(() => void refetch(), [page]);
-  useEffect(() => {
-    setPage(1);
-    void refetch();
-  }, [query]);
+  const todoList = response?.data;
+  const { mutate: saveTodo, isLoading: isSaving } = useSaveTodo();
+  const { mutate: toggleTodo, isLoading: isToggling } = useToggleTodo();
+  const { mutate: removeTodo, isLoading: isRemoving } = useRemoveTodo();
+  useEffect(() => void refetch(), [query, page]);
   return (
     <Box className={'appContainer'}>
       <TodoHeader query={query} setQuery={setQuery} saveTodo={saveTodo} />
       <TodoList
-        list={response?.data?.content}
-        isFetching={isFetching}
+        list={todoList?.content}
+        isLoading={isFetching || isSaving || isToggling || isRemoving}
         isSuccess={isSuccess}
-        isEmpty={isEmpty}
+        isEmpty={todoList?.totalElements === 0}
         saveItem={saveTodo}
         toggleItem={toggleTodo}
         removeItem={removeTodo}
@@ -41,7 +37,7 @@ const TodoApp = () => {
       <TodoFooter
         page={page}
         setPage={setPage}
-        totalPages={response?.data?.totalPages}
+        totalPages={todoList?.totalPages}
       />
     </Box>
   );

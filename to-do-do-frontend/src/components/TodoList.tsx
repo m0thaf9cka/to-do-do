@@ -5,7 +5,7 @@ import { Todo } from '../global/interfaces';
 
 interface TodoListProps {
   list: Todo[];
-  isFetching: boolean;
+  isLoading: boolean;
   isSuccess: boolean;
   isEmpty: boolean;
   saveItem: (todo: Todo) => void;
@@ -15,7 +15,7 @@ interface TodoListProps {
 
 const TodoList = ({
   list,
-  isFetching,
+  isLoading,
   isSuccess,
   isEmpty,
   saveItem,
@@ -24,7 +24,7 @@ const TodoList = ({
 }: TodoListProps) => {
   return (
     <Box style={{ minHeight: '226px' }}>
-      {isSuccess && !isEmpty && !isFetching && (
+      {isSuccess && !isEmpty && !isLoading && (
         <List>
           {list.map((item: Todo) => (
             <TodoItem
@@ -37,14 +37,14 @@ const TodoList = ({
           ))}
         </List>
       )}
-      {isEmpty && !isFetching && (
+      {isEmpty && !isLoading && (
         <Stack style={{ justifyContent: 'center', minHeight: '226px' }}>
           <Stack style={{ alignItems: 'center' }}>
             <Typography variant={'h6'}>No items found</Typography>
           </Stack>
         </Stack>
       )}
-      {isFetching && (
+      {isLoading && (
         <Stack style={{ justifyContent: 'center', minHeight: '226px' }}>
           <Stack style={{ alignItems: 'center' }}>
             <Box sx={{ display: 'flex' }}>
