@@ -28,8 +28,10 @@ public class TodoController {
 
   @GetMapping("/list")
   public Page<Todo> getList(
-      @RequestParam(required = false) String query, @RequestParam Integer page) {
-    return todoService.getList(query, page);
+      @RequestParam(required = false) String query,
+      @RequestParam String filter,
+      @RequestParam Integer page) {
+    return todoService.getList(query, filter, page);
   }
 
   @PostMapping("/save")
