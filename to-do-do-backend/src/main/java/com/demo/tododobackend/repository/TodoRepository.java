@@ -10,15 +10,8 @@ import com.demo.tododobackend.model.Todo;
 @Repository
 public interface TodoRepository extends PagingAndSortingRepository<Todo, Long> {
 
-  Page<Todo> findAll(Pageable pageable);
-
-  Page<Todo> findAllByIsCompletedIsFalse(Pageable pageable);
-
-  Page<Todo> findAllByIsCompletedIsTrue(Pageable pageable);
-
   Page<Todo> findAllByTitleIgnoreCaseContains(String title, Pageable pageable);
 
-  Page<Todo> findAllByTitleIgnoreCaseContainsAndIsCompletedIsFalse(String title, Pageable pageable);
-
-  Page<Todo> findAllByTitleIgnoreCaseContainsAndIsCompletedIsTrue(String title, Pageable pageable);
+  Page<Todo> findAllByTitleIgnoreCaseContainsAndIsCompletedIs(
+      String title, Boolean isCompleted, Pageable pageable);
 }

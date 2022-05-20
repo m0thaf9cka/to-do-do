@@ -2,6 +2,7 @@ package com.demo.tododobackend.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.demo.tododobackend.model.Todo;
@@ -10,9 +11,7 @@ import com.demo.tododobackend.repository.TodoRepository;
 @Service
 public class TodoService {
 
-  private static final Integer TODOS_PER_PAGE = 5;
-  private static final String FILTER_ACTIVE = "active";
-  private static final String FILTER_DONE = "done";
+  private static final Integer TODOS_PER_PAGE = 10;
 
   private final TodoRepository todoRepository;
 
@@ -20,30 +19,21 @@ public class TodoService {
     this.todoRepository = todoRepository;
   }
 
-  public Page<Todo> getList(String query, String filter, Integer page) {
-    if (query != null) {
-      if (filter != null) {
-        if (filter.equals(FILTER_ACTIVE)) {
-          return todoRepository.findAllByTitleIgnoreCaseContainsAndIsCompletedIsFalse(
-              query, PageRequest.of(page - 1, TODOS_PER_PAGE));
-        }
-        if (filter.equals(FILTER_DONE)) {
-          return todoRepository.findAllByTitleIgnoreCaseContainsAndIsCompletedIsTrue(
-              query, PageRequest.of(page - 1, TODOS_PER_PAGE));
-        }
-      }
-      return todoRepository.findAllByTitleIgnoreCaseContains(
-          query, PageRequest.of(page - 1, TODOS_PER_PAGE));
+  public Page<Todo> getList(String query, String filter, String sort, Integer page) {
+    String sortBy = "id";
+    if (sort.startsWith("title")) {
+      sortBy = "title";
     }
-    if (filter != null) {
-      if (filter.equals(FILTER_ACTIVE)) {
-        return todoRepository.findAllByIsCompletedIsFalse(PageRequest.of(page - 1, TODOS_PER_PAGE));
-      }
-      if (filter.equals(FILTER_DONE)) {
-        return todoRepository.findAllByIsCompletedIsTrue(PageRequest.of(page - 1, TODOS_PER_PAGE));
-      }
+    Sort sorting = Sort.by(Sort.Order.asc(sortBy).ignoreCase());
+    if (sort.endsWith("desc")) {
+      sorting = Sort.by(Sort.Order.desc(sortBy).ignoreCase());
     }
-    return todoRepository.findAll(PageRequest.of(page - 1, TODOS_PER_PAGE));
+    PageRequest pageRequest = PageRequest.of(page - 1, TODOS_PER_PAGE, sorting);
+    if (filter.equals("all")) {
+      return todoRepository.findAllByTitleIgnoreCaseContains(query, pageRequest);
+    }
+    return todoRepository.findAllByTitleIgnoreCaseContainsAndIsCompletedIs(
+        query, filter.equals("done"), pageRequest);
   }
 
   public Todo save(Todo todo) {
