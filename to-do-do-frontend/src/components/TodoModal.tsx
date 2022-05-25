@@ -32,7 +32,9 @@ const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
             label={item ? 'Edit todo' : 'Add todo'}
             variant={'standard'}
             value={todo.title}
-            onChange={(e) => setTodo({ ...todo, title: e.target.value })}
+            onChange={(event) =>
+              setTodo({ ...todo, title: event.target.value })
+            }
           />
           <Stack
             direction={'row'}

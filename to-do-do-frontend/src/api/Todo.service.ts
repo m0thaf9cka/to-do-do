@@ -10,5 +10,6 @@ export const TodoService = {
     }),
   save: (todo: Todo) => axios.post(`${HOST}/save`, todo),
   toggle: (id: number) => axios.patch(`${HOST}/toggle/${id}`),
-  remove: (id: number) => axios.delete(`${HOST}/remove/${id}`)
+  remove: (id: number) => axios.delete(`${HOST}/remove/${id}`),
+  clearList: () => axios.delete(`${HOST}/clear`)
 };

@@ -10,6 +10,7 @@ import { useTodoList } from '../hooks/useTodoList';
 import { useSaveTodo } from '../hooks/useSaveTodo';
 import { useToggleTodo } from '../hooks/useToggleTodo';
 import { useRemoveTodo } from '../hooks/useRemoveTodo';
+import { useClearTodoList } from '../hooks/useClearTodoList';
 
 const TodoApp = () => {
   const [query, setQuery] = useState('');
@@ -26,15 +27,21 @@ const TodoApp = () => {
   const { mutate: saveTodo, isLoading: isSaving } = useSaveTodo();
   const { mutate: toggleTodo } = useToggleTodo();
   const { mutate: removeTodo, isLoading: isRemoving } = useRemoveTodo();
+  const { mutate: clearTodoList, isLoading: isClearing } = useClearTodoList();
   useEffect(() => void refetch(), [query, filter, sort, page]);
   return (
     <Box className={'appContainer'}>
-      <TodoHeader query={query} setQuery={setQuery} saveTodo={saveTodo} />
+      <TodoHeader
+        query={query}
+        setQuery={setQuery}
+        saveTodo={saveTodo}
+        clearTodoList={clearTodoList}
+      />
       <TodoSort sort={sort} setSort={setSort} />
       <TodoFilter filter={filter} setFilter={setFilter} />
       <TodoList
         list={todoList?.content}
-        isLoading={isFetching || isSaving || isRemoving}
+        isLoading={isFetching || isSaving || isRemoving || isClearing}
         isSuccess={isSuccess}
         isEmpty={todoList?.totalElements === 0}
         saveItem={saveTodo}

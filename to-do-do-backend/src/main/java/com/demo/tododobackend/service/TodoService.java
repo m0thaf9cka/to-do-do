@@ -53,4 +53,8 @@ public class TodoService {
   public void remove(Long id) {
     todoRepository.deleteById(id);
   }
+
+  public void clearAll() {
+    todoRepository.deleteAll(todoRepository.findAllByIsCompletedIsTrue());
+  }
 }
