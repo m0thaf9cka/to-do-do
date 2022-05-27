@@ -5,19 +5,14 @@ import ClearAllIcon from '@mui/icons-material/ClearAll';
 import TodoModal from './TodoModal';
 import { Todo } from '../global/interfaces';
 
-interface TodoHeader {
+interface Header {
   query: string;
   setQuery: (query: string) => void;
   saveTodo: (todo: Todo) => void;
   clearTodoList: () => void;
 }
 
-const TodoHeader = ({
-  query,
-  setQuery,
-  saveTodo,
-  clearTodoList
-}: TodoHeader) => {
+const Header = ({ query, setQuery, saveTodo, clearTodoList }: Header) => {
   const [isModal, setIsModal] = useState(false);
   const openModal = () => setIsModal(true);
   const closeModal = () => setIsModal(false);
@@ -48,4 +43,4 @@ const TodoHeader = ({
   );
 };
 
-export default TodoHeader;
+export default Header;

@@ -1,32 +1,32 @@
 import React from 'react';
+import { AxiosResponse } from 'axios';
+import { UseQueryResult } from 'react-query';
 import { Box, CircularProgress, List, Stack, Typography } from '@mui/material';
 import TodoItem from './TodoItem';
 import { Todo } from '../global/interfaces';
 
 interface TodoListProps {
-  list: Todo[];
+  listQuery: UseQueryResult<AxiosResponse>;
   isLoading: boolean;
-  isSuccess: boolean;
-  isEmpty: boolean;
   saveItem: (todo: Todo) => void;
   toggleItem: (id: number) => void;
   removeItem: (id: number) => void;
 }
 
 const TodoList = ({
-  list,
+  listQuery,
   isLoading,
-  isSuccess,
-  isEmpty,
   saveItem,
   toggleItem,
   removeItem
 }: TodoListProps) => {
+  const list = listQuery?.data?.data;
+  const isEmpty = list?.totalElements === 0;
   return (
     <Box className={'todoListContainer'}>
-      {isSuccess && !isEmpty && !isLoading && (
+      {listQuery.isSuccess && !isEmpty && !isLoading && (
         <List>
-          {list.map((item: Todo) => (
+          {list?.content.map((item: Todo) => (
             <TodoItem
               key={item.id}
               item={item}
@@ -53,6 +53,17 @@ const TodoList = ({
           <Stack style={{ alignItems: 'center' }}>
             <Box style={{ display: 'flex' }}>
               <CircularProgress />
+            </Box>
+          </Stack>
+        </Stack>
+      )}
+      {listQuery.isError && (
+        <Stack
+          className={'todoListContainer'}
+          style={{ justifyContent: 'center' }}>
+          <Stack style={{ alignItems: 'center' }}>
+            <Box style={{ display: 'flex' }}>
+              <Typography variant={'h6'}>Something went wrong</Typography>
             </Box>
           </Stack>
         </Stack>

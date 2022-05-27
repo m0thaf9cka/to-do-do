@@ -19,7 +19,7 @@ public class TodoService {
     this.todoRepository = todoRepository;
   }
 
-  public Page<Todo> getList(String query, String filter, String sort, Integer page) {
+  public Page<Todo> get(String query, String filter, String sort, Integer page) {
     String sortBy = "id";
     if (sort.startsWith("title")) {
       sortBy = "title";
@@ -54,7 +54,7 @@ public class TodoService {
     todoRepository.deleteById(id);
   }
 
-  public void clearAll() {
+  public void clear() {
     todoRepository.deleteAll(todoRepository.findAllByIsCompletedIsTrue());
   }
 }

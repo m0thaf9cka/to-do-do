@@ -1,13 +1,13 @@
 import React from 'react';
 import { Pagination, Stack } from '@mui/material';
 
-interface TodoFooterProps {
+interface FooterProps {
   page: number;
   setPage: (page: number) => void;
   totalPages: number;
 }
 
-const TodoFooter = ({ page, setPage, totalPages }: TodoFooterProps) => {
+const Footer = ({ page, setPage, totalPages }: FooterProps) => {
   return (
     <Stack style={{ alignItems: 'center' }}>
       {totalPages > 1 && (
@@ -24,4 +24,4 @@ const TodoFooter = ({ page, setPage, totalPages }: TodoFooterProps) => {
   );
 };
 
-export default TodoFooter;
+export default Footer;
