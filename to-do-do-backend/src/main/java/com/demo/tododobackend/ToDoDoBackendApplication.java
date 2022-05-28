@@ -22,20 +22,20 @@ public class ToDoDoBackendApplication implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    todoService.save(Todo.builder().title("Buy groceries").isCompleted(true).build());
-    todoService.save(Todo.builder().title("Clean up the apartment").isCompleted(false).build());
-    todoService.save(Todo.builder().title("Wash the dishes").isCompleted(false).build());
-    todoService.save(Todo.builder().title("Do morning exercises").isCompleted(true).build());
-    todoService.save(Todo.builder().title("Make a breakfast").isCompleted(false).build());
-    todoService.save(Todo.builder().title("Read the newspaper").isCompleted(false).build());
-    todoService.save(Todo.builder().title("Take a shower").isCompleted(true).build());
-    todoService.save(Todo.builder().title("Change the hairstyle").isCompleted(true).build());
-    todoService.save(Todo.builder().title("Pick up kids from school").isCompleted(false).build());
-    todoService.save(Todo.builder().title("Walk the dog").isCompleted(true).build());
-    todoService.save(Todo.builder().title("Pay the bills").isCompleted(true).build());
-    todoService.save(Todo.builder().title("Have dinner with parents").isCompleted(false).build());
-    todoService.save(Todo.builder().title("Do laundry").isCompleted(true).build());
-    todoService.save(Todo.builder().title("Play board games").isCompleted(false).build());
-    todoService.save(Todo.builder().title("Go to church").isCompleted(false).build());
+    todoService.save(Todo.builder().title("Buy groceries").isComplete(true).build());
+    todoService.save(Todo.builder().title("Clean up the apartment").isComplete(false).build());
+    todoService.save(Todo.builder().title("Wash the dishes").isComplete(false).build());
+    todoService.save(Todo.builder().title("Do morning exercises").isComplete(true).build());
+    todoService.save(Todo.builder().title("Make a breakfast").isComplete(false).build());
+    todoService.save(Todo.builder().title("Read the newspaper").isComplete(false).build());
+    todoService.save(Todo.builder().title("Take a shower").isComplete(true).build());
+    todoService.save(Todo.builder().title("Change the hairstyle").isComplete(true).build());
+    todoService.save(Todo.builder().title("Pick up kids from school").isComplete(false).build());
+    todoService.save(Todo.builder().title("Walk the dog").isComplete(true).build());
+    todoService.save(Todo.builder().title("Pay the bills").isComplete(true).build());
+    todoService.save(Todo.builder().title("Have dinner with parents").isComplete(false).build());
+    todoService.save(Todo.builder().title("Do laundry").isComplete(true).build());
+    todoService.save(Todo.builder().title("Play board games").isComplete(false).build());
+    todoService.save(Todo.builder().title("Go to church").isComplete(false).build());
   }
 }

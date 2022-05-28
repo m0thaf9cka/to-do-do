@@ -5,13 +5,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.demo.tododobackend.constants.TodoConstants;
 import com.demo.tododobackend.model.Todo;
 import com.demo.tododobackend.repository.TodoRepository;
 
 @Service
 public class TodoService {
-
-  private static final Integer TODOS_PER_PAGE = 10;
 
   private final TodoRepository todoRepository;
 
@@ -19,21 +18,11 @@ public class TodoService {
     this.todoRepository = todoRepository;
   }
 
-  public Page<Todo> get(String query, String filter, String sort, Integer page) {
-    String sortBy = "id";
-    if (sort.startsWith("title")) {
-      sortBy = "title";
-    }
-    Sort sorting = Sort.by(Sort.Order.asc(sortBy).ignoreCase());
-    if (sort.endsWith("desc")) {
-      sorting = Sort.by(Sort.Order.desc(sortBy).ignoreCase());
-    }
-    PageRequest pageRequest = PageRequest.of(page - 1, TODOS_PER_PAGE, sorting);
-    if (filter.equals("all")) {
-      return todoRepository.findAllByTitleIgnoreCaseContains(query, pageRequest);
-    }
-    return todoRepository.findAllByTitleIgnoreCaseContainsAndIsCompletedIs(
-        query, filter.equals("done"), pageRequest);
+  public Page<Todo> getList(String query, String filter, String sort, Integer page) {
+    return filter.equals(TodoConstants.FILTER_ALL)
+        ? todoRepository.findAllByTitleIgnoreCaseContains(query, getPageRequest(page, sort))
+        : todoRepository.findAllByTitleIgnoreCaseContainsAndIsCompleteIs(
+            query, filter.equals(TodoConstants.FILTER_COMPLETE), getPageRequest(page, sort));
   }
 
   public Todo save(Todo todo) {
@@ -45,7 +34,7 @@ public class TodoService {
         .findById(id)
         .ifPresent(
             todo -> {
-              todo.setIsCompleted(!todo.getIsCompleted());
+              todo.setIsComplete(!todo.getIsComplete());
               todoRepository.save(todo);
             });
   }
@@ -54,7 +43,23 @@ public class TodoService {
     todoRepository.deleteById(id);
   }
 
-  public void clear() {
-    todoRepository.deleteAll(todoRepository.findAllByIsCompletedIsTrue());
+  public void clearList() {
+    todoRepository.deleteAll(todoRepository.findAllByIsCompleteIsTrue());
+  }
+
+  private PageRequest getPageRequest(Integer page, String sort) {
+    return PageRequest.of(--page, TodoConstants.TODO_ITEMS_PER_PAGE, getSort(sort));
+  }
+
+  private Sort getSort(String sort) {
+    return sort.endsWith(TodoConstants.SORT_ASC)
+        ? Sort.by(Sort.Order.asc(getSortBy(sort)).ignoreCase())
+        : Sort.by(Sort.Order.desc(getSortBy(sort)).ignoreCase());
+  }
+
+  private String getSortBy(String sort) {
+    return sort.startsWith(TodoConstants.SORT_ID)
+        ? TodoConstants.SORT_ID
+        : TodoConstants.SORT_TITLE;
   }
 }

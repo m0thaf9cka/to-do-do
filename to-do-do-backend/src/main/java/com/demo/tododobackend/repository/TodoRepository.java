@@ -12,8 +12,8 @@ public interface TodoRepository extends PagingAndSortingRepository<Todo, Long> {
 
   Page<Todo> findAllByTitleIgnoreCaseContains(String title, Pageable pageable);
 
-  Page<Todo> findAllByTitleIgnoreCaseContainsAndIsCompletedIs(
-      String title, Boolean isCompleted, Pageable pageable);
+  Page<Todo> findAllByTitleIgnoreCaseContainsAndIsCompleteIs(
+      String title, Boolean isComplete, Pageable pageable);
 
-  Iterable<Todo> findAllByIsCompletedIsTrue();
+  Iterable<Todo> findAllByIsCompleteIsTrue();
 }

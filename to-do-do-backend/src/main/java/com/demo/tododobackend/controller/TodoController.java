@@ -27,12 +27,12 @@ public class TodoController {
   }
 
   @GetMapping("/list")
-  public Page<Todo> get(
+  public Page<Todo> getList(
       @RequestParam String query,
       @RequestParam String filter,
       @RequestParam String sort,
       @RequestParam Integer page) {
-    return todoService.get(query, filter, sort, page);
+    return todoService.getList(query, filter, sort, page);
   }
 
   @PostMapping("/save")
@@ -51,7 +51,7 @@ public class TodoController {
   }
 
   @DeleteMapping("/clear")
-  public void clear() {
-    todoService.clear();
+  public void clearList() {
+    todoService.clearList();
   }
 }

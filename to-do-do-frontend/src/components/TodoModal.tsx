@@ -10,7 +10,7 @@ interface TodoModalProps {
 }
 
 const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
-  const emptyTodo = { id: 0, title: '', isCompleted: false };
+  const emptyTodo = { id: 0, title: '', isComplete: false };
   const [todo, setTodo] = useState(item || emptyTodo);
   const submit = () => {
     if (todo.title.trim()) {

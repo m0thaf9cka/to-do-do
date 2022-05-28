@@ -1,6 +1,10 @@
 import React from 'react';
 import { Radio, Stack, Typography } from '@mui/material';
-import { FILTER_ACTIVE, FILTER_ALL, FILTER_DONE } from '../global/constants';
+import {
+  FILTER_ACTIVE,
+  FILTER_ALL,
+  FILTER_COMPLETE
+} from '../global/constants';
 
 interface TodoFilterProps {
   filter: string;
@@ -32,11 +36,11 @@ const TodoFilter = ({ filter, setFilter }: TodoFilterProps) => {
         Active
       </Typography>
       <Radio
-        checked={filter === FILTER_DONE}
+        checked={filter === FILTER_COMPLETE}
         onChange={handleSelect}
-        value={FILTER_DONE}
+        value={FILTER_COMPLETE}
       />
-      <Typography variant={'body1'}>Done</Typography>
+      <Typography variant={'body1'}>Complete</Typography>
     </Stack>
   );
 };

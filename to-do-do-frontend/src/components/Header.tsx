@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IconButton, Stack, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
-import TodoModal from './TodoModal';
+import Modal from './TodoModal';
 import { Todo } from '../global/interfaces';
 
 interface Header {
@@ -38,7 +38,7 @@ const Header = ({ query, setQuery, saveTodo, clearTodoList }: Header) => {
           <AddCircleIcon fontSize={'large'} color={'primary'} />
         </IconButton>
       </Stack>
-      <TodoModal isOpen={isModal} close={closeModal} saveItem={saveTodo} />
+      <Modal isOpen={isModal} close={closeModal} saveItem={saveTodo} />
     </Stack>
   );
 };

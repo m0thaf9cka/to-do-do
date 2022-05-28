@@ -6,7 +6,7 @@ import TodoSort from './TodoSort';
 import TodoFilter from './TodoFilter';
 import Footer from './Footer';
 import { FILTER_ALL, SORT_ID_DESC } from '../global/constants';
-import { useTodoList } from '../hooks/useTodoList';
+import { useGetTodoList } from '../hooks/useGetTodoList';
 import { useSaveTodo } from '../hooks/useSaveTodo';
 import { useToggleTodo } from '../hooks/useToggleTodo';
 import { useRemoveTodo } from '../hooks/useRemoveTodo';
@@ -17,7 +17,7 @@ const TodoApp = () => {
   const [filter, setFilter] = useState(FILTER_ALL);
   const [sort, setSort] = useState(SORT_ID_DESC);
   const [page, setPage] = useState(1);
-  const todoListQuery = useTodoList(query, filter, sort, page, setPage);
+  const todoListQuery = useGetTodoList(query, filter, sort, page, setPage);
   const todoListPages = todoListQuery?.data?.data.totalPages;
   const todoSaveMutation = useSaveTodo();
   const todoToggleMutation = useToggleTodo();

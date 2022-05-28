@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { TodoService } from '../api/Todo.service';
 
-export const useTodoList = (
+export const useGetTodoList = (
   query: string,
   filter: string,
   sort: string,

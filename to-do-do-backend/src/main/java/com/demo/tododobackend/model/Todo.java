@@ -24,6 +24,6 @@ public class Todo {
 
   private String title;
 
-  @JsonProperty("isCompleted")
-  private Boolean isCompleted;
+  @JsonProperty("isComplete")
+  private Boolean isComplete;
 }

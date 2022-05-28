@@ -13,7 +13,7 @@ interface TodoItemProps {
 }
 
 const TodoItem = ({ item, save, toggle, remove }: TodoItemProps) => {
-  const [isCompleted, setIsCompleted] = useState(item.isCompleted);
+  const [isComplete, setIsComplete] = useState(item.isComplete);
   const [isModal, setIsModal] = useState(false);
   const openModal = () => setIsModal(true);
   const closeModal = () => setIsModal(false);
@@ -21,9 +21,9 @@ const TodoItem = ({ item, save, toggle, remove }: TodoItemProps) => {
     <ListItem disableGutters disablePadding>
       <Checkbox
         edge={'start'}
-        checked={isCompleted}
+        checked={isComplete}
         onChange={() => {
-          setIsCompleted(!isCompleted);
+          setIsComplete(!isComplete);
           toggle(item.id);
         }}
       />
