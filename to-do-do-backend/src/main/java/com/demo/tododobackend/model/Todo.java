@@ -1,5 +1,7 @@
 package com.demo.tododobackend.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,4 +28,6 @@ public class Todo {
 
   @JsonProperty("isComplete")
   private Boolean isComplete;
+
+  private LocalDateTime createdAt;
 }

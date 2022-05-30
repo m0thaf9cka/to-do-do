@@ -5,7 +5,7 @@ import TodoList from './TodoList';
 import TodoSort from './TodoSort';
 import TodoFilter from './TodoFilter';
 import Footer from './Footer';
-import { FILTER_ALL, SORT_ID_DESC } from '../global/constants';
+import { FILTER_ALL, SORT_CREATED_AT_DESC } from '../global/constants';
 import { useGetTodoList } from '../hooks/useGetTodoList';
 import { useSaveTodo } from '../hooks/useSaveTodo';
 import { useToggleTodo } from '../hooks/useToggleTodo';
@@ -15,7 +15,7 @@ import { useClearTodoList } from '../hooks/useClearTodoList';
 const TodoApp = () => {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState(FILTER_ALL);
-  const [sort, setSort] = useState(SORT_ID_DESC);
+  const [sort, setSort] = useState(SORT_CREATED_AT_DESC);
   const [page, setPage] = useState(1);
   const todoListQuery = useGetTodoList(query, filter, sort, page, setPage);
   const todoListPages = todoListQuery?.data?.data.totalPages;
@@ -29,6 +29,7 @@ const TodoApp = () => {
     todoRemoveMutation.isLoading ||
     todoClearMutation.isLoading;
   useEffect(() => void todoListQuery.refetch(), [query, filter, sort, page]);
+  console.log(todoListQuery?.data?.data);
   return (
     <Box className={'appContainer'}>
       <Header

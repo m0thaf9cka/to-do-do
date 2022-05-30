@@ -1,5 +1,7 @@
 package com.demo.tododobackend.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -26,6 +28,9 @@ public class TodoService {
   }
 
   public Todo save(Todo todo) {
+    if (todo.getCreatedAt() == null) {
+      todo.setCreatedAt(LocalDateTime.now());
+    }
     return todoRepository.save(todo);
   }
 
@@ -58,8 +63,8 @@ public class TodoService {
   }
 
   private String getSortBy(String sort) {
-    return sort.startsWith(TodoConstants.SORT_ID)
-        ? TodoConstants.SORT_ID
+    return sort.startsWith(TodoConstants.SORT_CREATED_AT)
+        ? TodoConstants.SORT_CREATED_AT
         : TodoConstants.SORT_TITLE;
   }
 }
