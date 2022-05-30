@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
+import debounce from 'lodash.debounce';
 import { IconButton, Stack, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
@@ -16,13 +17,16 @@ const Header = ({ query, setQuery, saveTodo, clearTodoList }: Header) => {
   const [isModal, setIsModal] = useState(false);
   const openModal = () => setIsModal(true);
   const closeModal = () => setIsModal(false);
+  const changeQuery = (event: ChangeEvent<HTMLInputElement>) =>
+    setQuery(event.target.value);
+  const queryHandler = useMemo(() => debounce(changeQuery, 500), [query]);
+  useEffect(() => () => queryHandler.cancel(), []);
   return (
     <Stack direction={'row'} style={{ justifyContent: 'space-between' }}>
       <TextField
         label={'Search'}
         variant={'standard'}
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
+        onChange={queryHandler}
         style={{ width: '300px' }}
       />
       <Stack
