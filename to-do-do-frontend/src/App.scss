@@ -44,3 +44,18 @@
     width: 265px;
   }
 }
+
+.todoFilter {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+  width: 265px;
+  padding-top: 8px;
+}
+
+.todoFilterItem {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+}

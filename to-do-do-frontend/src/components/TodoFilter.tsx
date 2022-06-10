@@ -1,9 +1,13 @@
 import React from 'react';
-import { Radio, Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
+import TodoFilterItem from './TodoFilterItem';
 import {
-  FILTER_ACTIVE,
-  FILTER_ALL,
-  FILTER_COMPLETE
+  FILTER_ACTIVE_LABEL,
+  FILTER_ACTIVE_VALUE,
+  FILTER_ALL_LABEL,
+  FILTER_ALL_VALUE,
+  FILTER_COMPLETE_LABEL,
+  FILTER_COMPLETE_VALUE
 } from '../global/constants';
 
 interface TodoFilterProps {
@@ -12,46 +16,26 @@ interface TodoFilterProps {
 }
 
 const TodoFilter = ({ filter, setFilter }: TodoFilterProps) => {
-  const handleSelect = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setFilter(event.target.value);
   return (
-    <Stack
-      direction={'row'}
-      style={{
-        alignItems: 'center',
-        paddingTop: '8px',
-        maxWidth: '265px',
-        justifyContent: 'space-between'
-      }}>
-      <Stack direction={'row'} style={{ alignItems: 'center' }}>
-        <Radio
-          edge={'start'}
-          checked={filter === FILTER_ALL}
-          onChange={handleSelect}
-          value={FILTER_ALL}
-        />
-        <Typography variant={'body1'} style={{ marginRight: '5px' }}>
-          All
-        </Typography>
-      </Stack>
-      <Stack direction={'row'} style={{ alignItems: 'center' }}>
-        <Radio
-          checked={filter === FILTER_ACTIVE}
-          onChange={handleSelect}
-          value={FILTER_ACTIVE}
-        />
-        <Typography variant={'body1'} style={{ marginRight: '5px' }}>
-          Active
-        </Typography>
-      </Stack>
-      <Stack direction={'row'} style={{ alignItems: 'center' }}>
-        <Radio
-          checked={filter === FILTER_COMPLETE}
-          onChange={handleSelect}
-          value={FILTER_COMPLETE}
-        />
-        <Typography variant={'body1'}>Complete</Typography>
-      </Stack>
+    <Stack className={'todoFilter'}>
+      <TodoFilterItem
+        selectedValue={filter}
+        setSelectedValue={setFilter}
+        value={FILTER_ALL_VALUE}
+        label={FILTER_ALL_LABEL}
+      />
+      <TodoFilterItem
+        selectedValue={filter}
+        setSelectedValue={setFilter}
+        value={FILTER_ACTIVE_VALUE}
+        label={FILTER_ACTIVE_LABEL}
+      />
+      <TodoFilterItem
+        selectedValue={filter}
+        setSelectedValue={setFilter}
+        value={FILTER_COMPLETE_VALUE}
+        label={FILTER_COMPLETE_LABEL}
+      />
     </Stack>
   );
 };
