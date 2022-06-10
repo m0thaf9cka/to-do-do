@@ -27,7 +27,7 @@ const Header = ({ query, setQuery, saveTodo, clearTodoList }: Header) => {
         label={'Search'}
         variant={'standard'}
         onChange={queryHandler}
-        style={{ width: '300px' }}
+        style={{ width: '265px' }}
       />
       <Stack
         direction={'row'}
