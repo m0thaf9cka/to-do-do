@@ -4,6 +4,7 @@ import { IconButton, Stack, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import Modal from './TodoModal';
+import { SEARCH_LABEL } from '../global/constants';
 import { Todo } from '../global/interfaces';
 
 interface Header {
@@ -24,7 +25,8 @@ const Header = ({ query, setQuery, saveTodo, clearTodoList }: Header) => {
   return (
     <Stack direction={'row'} style={{ justifyContent: 'space-between' }}>
       <TextField
-        label={'Search'}
+        className={'todoSearch'}
+        label={SEARCH_LABEL}
         variant={'standard'}
         onChange={queryHandler}
         style={{ width: '265px' }}
