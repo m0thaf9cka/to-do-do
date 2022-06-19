@@ -32,7 +32,11 @@ const TodoHeader = ({
           onClick={() => clearTodoList()}>
           <ClearAllIcon fontSize={'large'} color={'primary'} />
         </IconButton>
-        <IconButton edge={'end'} color={'primary'} onClick={() => openModal()}>
+        <IconButton
+          className={'addTodoButton'}
+          edge={'end'}
+          color={'primary'}
+          onClick={() => openModal()}>
           <AddCircleIcon fontSize={'large'} color={'primary'} />
         </IconButton>
       </Stack>

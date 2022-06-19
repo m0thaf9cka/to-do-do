@@ -41,7 +41,9 @@ const TodoList = ({
       {isEmpty && !isLoading && (
         <Stack className={'todoList'}>
           <Stack className={'todoListStack'}>
-            <Typography variant={'h6'}>{EMPTY_LIST_LABEL}</Typography>
+            <Typography className={'emptyListText'} variant={'h6'}>
+              {EMPTY_LIST_LABEL}
+            </Typography>
           </Stack>
         </Stack>
       )}
@@ -58,7 +60,9 @@ const TodoList = ({
         <Stack className={'todoList'}>
           <Stack className={'todoListStack'}>
             <Box className={'todoListBox'}>
-              <Typography variant={'h6'}>{ERROR_LIST_LABEL}</Typography>
+              <Typography className={'errorListText'} variant={'h6'}>
+                {ERROR_LIST_LABEL}
+              </Typography>
             </Box>
           </Stack>
         </Stack>

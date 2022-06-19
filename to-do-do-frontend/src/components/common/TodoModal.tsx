@@ -35,6 +35,7 @@ const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
         <Stack spacing={2}>
           <TextField
             fullWidth
+            className={'todoInput'}
             label={item ? EDIT_TODO_LABEL : ADD_TODO_LABEL}
             variant={'standard'}
             value={todo.title}
@@ -50,6 +51,7 @@ const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
               {CANCEL_LABEL}
             </Button>
             <Button
+              className={'saveTodoButton'}
               variant={'contained'}
               onClick={() => submit()}
               disabled={!todo.title.trim()}>
