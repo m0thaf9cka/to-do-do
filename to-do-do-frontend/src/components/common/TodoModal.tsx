@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
-import { Todo } from '../global/interfaces';
+import { Todo } from '../../global/interfaces';
+import {
+  ADD_TODO_LABEL,
+  CANCEL_LABEL,
+  EDIT_TODO_LABEL,
+  SAVE_LABEL
+} from '../../global/labels';
 
 interface TodoModalProps {
   isOpen: boolean;
@@ -25,11 +31,11 @@ const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
   };
   return (
     <Modal open={isOpen} onClose={() => cancel()}>
-      <Box className={'modalBox'}>
+      <Box className={'todoModal'}>
         <Stack spacing={2}>
           <TextField
             fullWidth
-            label={item ? 'Edit todo' : 'Add todo'}
+            label={item ? EDIT_TODO_LABEL : ADD_TODO_LABEL}
             variant={'standard'}
             value={todo.title}
             onChange={(event) =>
@@ -41,13 +47,13 @@ const TodoModal = ({ isOpen, close, item, saveItem }: TodoModalProps) => {
             spacing={1}
             style={{ justifyContent: 'end' }}>
             <Button variant={'outlined'} onClick={() => cancel()}>
-              Cancel
+              {CANCEL_LABEL}
             </Button>
             <Button
               variant={'contained'}
               onClick={() => submit()}
               disabled={!todo.title.trim()}>
-              Save
+              {SAVE_LABEL}
             </Button>
           </Stack>
         </Stack>

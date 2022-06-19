@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import Header from './Header';
-import TodoList from './TodoList';
-import TodoSort from './TodoSort';
-import TodoFilter from './TodoFilter';
-import Footer from './Footer';
+import TodoHeader from './header/TodoHeader';
+import TodoSort from './main/TodoSort';
+import TodoFilter from './main/TodoFilter';
+import TodoList from './main/TodoList';
+import TodoFooter from './footer/TodoFooter';
 import { FILTER_ALL_VALUE, SORT_CREATED_AT_DESC } from '../global/constants';
 import { useGetTodoList } from '../hooks/useGetTodoList';
 import { useSaveTodo } from '../hooks/useSaveTodo';
@@ -30,8 +30,8 @@ const TodoApp = () => {
     todoClearMutation.isLoading;
   useEffect(() => void todoListQuery.refetch(), [query, filter, sort, page]);
   return (
-    <Box className={'appContainer'}>
-      <Header
+    <Box className={'todoApp'}>
+      <TodoHeader
         query={query}
         setQuery={setQuery}
         saveTodo={todoSaveMutation.mutate}
@@ -46,7 +46,7 @@ const TodoApp = () => {
         toggleItem={todoToggleMutation.mutate}
         removeItem={todoRemoveMutation.mutate}
       />
-      <Footer page={page} setPage={setPage} totalPages={todoListPages} />
+      <TodoFooter page={page} setPage={setPage} totalPages={todoListPages} />
     </Box>
   );
 };

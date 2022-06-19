@@ -2,8 +2,9 @@ import React from 'react';
 import { AxiosResponse } from 'axios';
 import { UseQueryResult } from 'react-query';
 import { Box, CircularProgress, List, Stack, Typography } from '@mui/material';
-import TodoItem from './TodoItem';
-import { Todo } from '../global/interfaces';
+import TodoListItem from './TodoListItem';
+import { Todo } from '../../global/interfaces';
+import { EMPTY_LIST_LABEL, ERROR_LIST_LABEL } from '../../global/labels';
 
 interface TodoListProps {
   listQuery: UseQueryResult<AxiosResponse>;
@@ -23,11 +24,11 @@ const TodoList = ({
   const list = listQuery?.data?.data;
   const isEmpty = list?.totalElements === 0;
   return (
-    <Box className={'todoListContainer'}>
+    <Box className={'todoList'}>
       {listQuery.isSuccess && !isEmpty && !isLoading && (
         <List>
           {list?.content.map((item: Todo) => (
-            <TodoItem
+            <TodoListItem
               key={item.id}
               item={item}
               save={saveItem}
@@ -38,32 +39,26 @@ const TodoList = ({
         </List>
       )}
       {isEmpty && !isLoading && (
-        <Stack
-          className={'todoListContainer'}
-          style={{ justifyContent: 'center' }}>
-          <Stack style={{ alignItems: 'center' }}>
-            <Typography variant={'h6'}>No items found</Typography>
+        <Stack className={'todoList'}>
+          <Stack className={'todoListStack'}>
+            <Typography variant={'h6'}>{EMPTY_LIST_LABEL}</Typography>
           </Stack>
         </Stack>
       )}
       {isLoading && (
-        <Stack
-          className={'todoListContainer'}
-          style={{ justifyContent: 'center' }}>
-          <Stack style={{ alignItems: 'center' }}>
-            <Box style={{ display: 'flex' }}>
+        <Stack className={'todoList'}>
+          <Stack className={'todoListStack'}>
+            <Box className={'todoListBox'}>
               <CircularProgress />
             </Box>
           </Stack>
         </Stack>
       )}
       {listQuery.isError && (
-        <Stack
-          className={'todoListContainer'}
-          style={{ justifyContent: 'center' }}>
-          <Stack style={{ alignItems: 'center' }}>
-            <Box style={{ display: 'flex' }}>
-              <Typography variant={'h6'}>Something went wrong</Typography>
+        <Stack className={'todoList'}>
+          <Stack className={'todoListStack'}>
+            <Box className={'todoListBox'}>
+              <Typography variant={'h6'}>{ERROR_LIST_LABEL}</Typography>
             </Box>
           </Stack>
         </Stack>

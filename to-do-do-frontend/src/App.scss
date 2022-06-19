@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-.appContainer {
+.todoApp {
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -18,7 +18,7 @@
   min-width: 375px;
 }
 
-.modalBox {
+.todoModal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -30,15 +30,41 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
-.todoItemTitle {
-  margin: 0 10px;
+.todoHeader {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
 }
 
-.todoListContainer {
+.todoSearch {
+  width: 265px;
+}
+
+.todoHeaderButtons {
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.todoList {
+  justify-content: center;
   min-height: 436px;
 }
 
-.sortContainer {
+.todoListStack {
+  align-items: center;
+}
+
+.todoListBox {
+  display: flex;
+}
+
+.todoListItemText {
+  margin: 0 10px;
+}
+
+.todoSort {
   margin: 16px 0 8px 0;
   div {
     width: 265px;
@@ -57,5 +83,10 @@
 .todoFilterItem {
   display: flex;
   flex-direction: row !important;
+  align-items: center;
+}
+
+.todoPagination {
+  display: flex;
   align-items: center;
 }

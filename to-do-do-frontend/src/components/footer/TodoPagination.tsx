@@ -1,15 +1,15 @@
 import React from 'react';
 import { Pagination, Stack } from '@mui/material';
 
-interface FooterProps {
+interface TodoPaginationProps {
   page: number;
   setPage: (page: number) => void;
   totalPages: number;
 }
 
-const Footer = ({ page, setPage, totalPages }: FooterProps) => {
+const TodoPagination = ({ page, setPage, totalPages }: TodoPaginationProps) => {
   return (
-    <Stack style={{ alignItems: 'center' }}>
+    <Stack className={'todoPagination'}>
       {totalPages > 1 && (
         <Pagination
           page={page}
@@ -24,4 +24,4 @@ const Footer = ({ page, setPage, totalPages }: FooterProps) => {
   );
 };
 
-export default Footer;
+export default TodoPagination;

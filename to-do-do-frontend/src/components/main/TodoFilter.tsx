@@ -2,13 +2,15 @@ import React from 'react';
 import { Stack } from '@mui/material';
 import TodoFilterItem from './TodoFilterItem';
 import {
-  FILTER_ACTIVE_LABEL,
   FILTER_ACTIVE_VALUE,
-  FILTER_ALL_LABEL,
   FILTER_ALL_VALUE,
-  FILTER_COMPLETE_LABEL,
   FILTER_COMPLETE_VALUE
-} from '../global/constants';
+} from '../../global/constants';
+import {
+  FILTER_ACTIVE_LABEL,
+  FILTER_ALL_LABEL,
+  FILTER_COMPLETE_LABEL
+} from '../../global/labels';
 
 interface TodoFilterProps {
   filter: string;
