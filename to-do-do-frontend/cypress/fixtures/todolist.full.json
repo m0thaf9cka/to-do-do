@@ -10,7 +10,7 @@
       "id": 2,
       "title": "Make a breakfast",
       "createdAt": "1995-07-01T00:00:00.000000",
-      "isComplete": false
+      "isComplete": true
     }
   ],
   "pageable": {

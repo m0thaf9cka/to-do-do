@@ -5,7 +5,8 @@ export default defineConfig({
     baseUrl: 'http://localhost:3000'
   },
   env: {
-    TODO_LIST_ENDPOINT:
-      '/api/todo/list?query=&filter=all&sort=createdAt-desc&page=1'
+    GET_TODO_LIST_ENDPOINT:
+      '/api/todo/list?query=&filter=all&sort=createdAt-desc&page=1',
+    TOGGLE_TODO_ENDPOINT: '/api/todo/toggle/'
   }
 });

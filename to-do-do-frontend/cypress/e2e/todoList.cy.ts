@@ -11,7 +11,7 @@ describe('todo list', () => {
   it('should display an error message on failed response', () => {
     cy.server();
     cy.route({
-      url: Cypress.env('TODO_LIST_ENDPOINT'),
+      url: Cypress.env('GET_TODO_LIST_ENDPOINT'),
       method: 'GET',
       status: 500,
       response: {}

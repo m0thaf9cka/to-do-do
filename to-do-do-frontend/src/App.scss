@@ -60,8 +60,13 @@
   display: flex;
 }
 
-.todoListItemText {
+.todoListItemText-active {
   margin: 0 10px;
+}
+
+.todoListItemText-complete {
+  margin: 0 10px;
+  text-decoration: line-through;
 }
 
 .todoSort {

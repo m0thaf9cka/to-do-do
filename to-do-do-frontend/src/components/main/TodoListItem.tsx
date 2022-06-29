@@ -17,6 +17,7 @@ const TodoListItem = ({ item, save, toggle, remove }: TodoListItemProps) => {
   const [isModal, setIsModal] = useState(false);
   const openModal = () => setIsModal(true);
   const closeModal = () => setIsModal(false);
+  const textClass = 'todoListItemText-' + (isComplete ? 'complete' : 'active');
   return (
     <ListItem disableGutters disablePadding>
       <Checkbox
@@ -27,7 +28,7 @@ const TodoListItem = ({ item, save, toggle, remove }: TodoListItemProps) => {
           toggle(item.id);
         }}
       />
-      <ListItemText className={'todoListItemText'} primary={item.title} />
+      <ListItemText className={textClass} primary={item.title} />
       <IconButton onClick={() => openModal()}>
         <EditIcon />
       </IconButton>
